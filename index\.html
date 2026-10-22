@@ -1,0 +1,937 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8e9e8">
+  <meta name="description" content="Góc nhỏ của Uyên Linh — những ngày tháng thanh xuân dưới mái trường THPT Phú Nhuận.">
+  <title>Uyên Linh | Những mùa hoa thanh xuân</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Quicksand:wght@400;500;600;700&display=swap');
+
+    :root {
+      --pink: #d58b9b;
+      --rose: #ad6377;
+      --light-pink: #f8e4e5;
+      --cream: #fff9f4;
+      --green: #87977b;
+      --text: #624951;
+      --muted: #95777d;
+      --border: #e9cbd0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 10;
+      opacity: 0.2;
+      background-image:
+        radial-gradient(#c99a9e 0.55px, transparent 0.55px);
+      background-size: 6px 6px;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 7%;
+      background: rgba(255, 249, 244, 0.94);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 29px;
+      font-style: italic;
+      color: var(--rose);
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--rose);
+    }
+
+    .theme-button {
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--rose);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 17px;
+      transition: 0.3s;
+    }
+
+    .theme-button:hover {
+      background: var(--light-pink);
+      transform: rotate(15deg);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 650px;
+      padding: 80px 9%;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 45px;
+      background:
+        radial-gradient(ellipse at 0% 15%, #f4d9dd 0%, transparent 32%),
+        radial-gradient(ellipse at 100% 90%, #f5ded7 0%, transparent 35%),
+        var(--cream);
+    }
+
+    .hero::before {
+      content: "❀";
+      position: absolute;
+      top: 40px;
+      left: 4%;
+      color: #dca2af;
+      font-size: 65px;
+      opacity: 0.5;
+      animation: drift 7s ease-in-out infinite;
+    }
+
+    .hero::after {
+      content: "✿";
+      position: absolute;
+      right: 5%;
+      bottom: 35px;
+      color: #c98597;
+      font-size: 58px;
+      opacity: 0.5;
+      animation: drift 6s ease-in-out infinite reverse;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 1;
+      animation: appear 1s ease both;
+    }
+
+    .eyebrow {
+      color: var(--rose);
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+    }
+
+    h1 {
+      margin: 24px 0;
+      font-size: clamp(52px, 7vw, 88px);
+      line-height: 0.99;
+      letter-spacing: -2px;
+    }
+
+    h1 em {
+      color: var(--pink);
+      font-weight: 400;
+    }
+
+    .hero-description {
+      max-width: 490px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 2;
+    }
+
+    .primary-button {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 14px 25px;
+      background: var(--rose);
+      color: white;
+      border: 1px solid var(--rose);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 1px;
+      transition: 0.3s;
+    }
+
+    .primary-button:hover {
+      background: transparent;
+      color: var(--rose);
+      transform: translateY(-3px);
+    }
+
+    .flower-frame {
+      position: relative;
+      max-width: 370px;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      padding: 12px;
+      margin: auto;
+      border: 1px solid #d9aab5;
+      background: #fffaf7;
+      transform: rotate(2deg);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .flower-picture {
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 50% 30%, #fff9f3, transparent 45%),
+        linear-gradient(145deg, #f4d6dc, #fcebe4 55%, #e8c2c9);
+    }
+
+    .flower-picture::before,
+    .flower-picture::after {
+      content: "✿";
+      position: absolute;
+      color: #dca0af;
+      opacity: 0.45;
+      font-size: 75px;
+    }
+
+    .flower-picture::before {
+      top: 12%;
+      left: 8%;
+      transform: rotate(-20deg);
+    }
+
+    .flower-picture::after {
+      right: 7%;
+      bottom: 20%;
+      transform: rotate(25deg);
+    }
+
+    .lily {
+      position: relative;
+      width: 230px;
+      height: 300px;
+      animation: sway 5s ease-in-out infinite;
+      transform-origin: 50% 90%;
+    }
+
+    .lily-stem {
+      position: absolute;
+      width: 5px;
+      height: 170px;
+      left: 50%;
+      bottom: 15px;
+      background: linear-gradient(90deg, #687e60, #a4b28c);
+      border-radius: 50%;
+      transform: rotate(4deg);
+    }
+
+    .lily-leaf {
+      position: absolute;
+      z-index: 1;
+      left: 50%;
+      bottom: 70px;
+      width: 80px;
+      height: 28px;
+      background: linear-gradient(135deg, #718966, #b2c09b);
+      border-radius: 100% 0 100% 0;
+      transform: rotate(-28deg);
+    }
+
+    .lily-leaf.second {
+      bottom: 105px;
+      transform: rotate(25deg) scaleX(-1);
+    }
+
+    .petal {
+      position: absolute;
+      z-index: 2;
+      width: 65px;
+      height: 145px;
+      left: 50%;
+      top: 15px;
+      transform-origin: 50% 100%;
+      border: 1px solid #d68b9e;
+      border-radius: 90% 10% 65% 35%;
+      background: linear-gradient(90deg, #d57d94, #f8d4db 60%, #fff0e9);
+    }
+
+    .petal.one {
+      transform: translateX(-50%) rotate(0deg);
+    }
+
+    .petal.two {
+      transform: translateX(-50%) rotate(42deg);
+      background: linear-gradient(90deg, #d17a91, #f5c5d0);
+    }
+
+    .petal.three {
+      transform: translateX(-50%) rotate(-42deg);
+      background: linear-gradient(90deg, #f5cbd4, #cf718b);
+    }
+
+    .petal.four {
+      transform: translateX(-50%) rotate(75deg) scale(0.82);
+      background: linear-gradient(90deg, #d88399, #f9dbe0);
+    }
+
+    .petal.five {
+      transform: translateX(-50%) rotate(-75deg) scale(0.82);
+      background: linear-gradient(90deg, #f8d9de, #d47a91);
+    }
+
+    .pollen {
+      position: absolute;
+      z-index: 4;
+      left: 49%;
+      top: 60px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #b58b52;
+      box-shadow:
+        12px -9px #c6a36a,
+        20px 2px #b58b52,
+        -8px -13px #d2b177,
+        23px -15px #c6a36a;
+    }
+
+    .frame-caption {
+      position: absolute;
+      bottom: 20px;
+      z-index: 5;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 23px;
+      font-style: italic;
+      color: #9f6075;
+    }
+
+    .side-note {
+      position: absolute;
+      right: 2%;
+      top: 25%;
+      writing-mode: vertical-rl;
+      color: #bd8591;
+      font-size: 10px;
+      letter-spacing: 3px;
+    }
+
+    .section {
+      padding: 90px 9%;
+      position: relative;
+    }
+
+    .section-heading {
+      max-width: 650px;
+      margin: 0 auto 45px;
+      text-align: center;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(37px, 5vw, 55px);
+      color: var(--rose);
+      margin: 15px 0;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      max-width: 950px;
+      margin: auto;
+    }
+
+    .paper-card {
+      position: relative;
+      padding: 32px;
+      border: 1px solid var(--border);
+      background: rgba(255, 253, 250, 0.85);
+      box-shadow: 0 12px 35px rgba(160, 94, 111, 0.06);
+      transition: transform 0.35s, box-shadow 0.35s;
+    }
+
+    .paper-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(160, 94, 111, 0.12);
+    }
+
+    .card-symbol {
+      color: var(--pink);
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    .paper-card h3 {
+      font-size: 29px;
+      color: var(--rose);
+      margin-bottom: 13px;
+    }
+
+    .paper-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 2;
+    }
+
+    .school-section {
+      background:
+        radial-gradient(ellipse at 100% 10%, #f3dadd, transparent 30%),
+        #fff4f1;
+    }
+
+    .timeline {
+      max-width: 680px;
+      margin: auto;
+      border-left: 1px solid #dba9b5;
+      padding-left: 30px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 35px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -36px;
+      top: 7px;
+      width: 11px;
+      height: 11px;
+      border: 3px solid var(--cream);
+      border-radius: 50%;
+      background: var(--pink);
+      box-shadow: 0 0 0 1px var(--pink);
+    }
+
+    .timeline-item h3 {
+      font-size: 28px;
+      color: var(--rose);
+      margin-bottom: 8px;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 2;
+    }
+
+    .quote-section {
+      padding: 90px 9%;
+      text-align: center;
+      background: #f3dfe1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-section::before,
+    .quote-section::after {
+      content: "❀";
+      position: absolute;
+      color: #d18c9e;
+      opacity: 0.35;
+      font-size: 100px;
+    }
+
+    .quote-section::before {
+      top: 10px;
+      left: 3%;
+    }
+
+    .quote-section::after {
+      bottom: 5px;
+      right: 3%;
+    }
+
+    .quote-section blockquote {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin: auto;
+      color: #98576d;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(29px, 4vw, 43px);
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .quote-section p {
+      margin-top: 24px;
+      color: #a67580;
+      font-size: 10px;
+      letter-spacing: 3px;
+    }
+
+    .contact {
+      text-align: center;
+      padding: 75px 8%;
+    }
+
+    .contact h2 {
+      color: var(--rose);
+      font-size: 43px;
+      margin: 15px 0;
+    }
+
+    .contact p {
+      color: var(--muted);
+      line-height: 2;
+      font-size: 14px;
+    }
+
+    footer {
+      padding: 30px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 2;
+      border-top: 1px solid var(--border);
+      background: #fffaf7;
+    }
+
+    .footer-flower {
+      color: var(--pink);
+      font-size: 25px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    body.dark {
+      --cream: #34282c;
+      --text: #f3e3e5;
+      --muted: #d0afb7;
+      --border: #67444f;
+      --rose: #e3a0b2;
+      --pink: #e8a9b8;
+      background: #34282c;
+    }
+
+    body.dark .navbar,
+    body.dark footer {
+      background: rgba(52, 40, 44, 0.96);
+    }
+
+    body.dark .hero {
+      background:
+        radial-gradient(ellipse at 0% 15%, #543640, transparent 32%),
+        #34282c;
+    }
+
+    body.dark .paper-card {
+      background: #403035;
+    }
+
+    body.dark .school-section {
+      background: #3a2a30;
+    }
+
+    body.dark .quote-section {
+      background: #513640;
+    }
+
+    body.dark .flower-picture {
+      background: linear-gradient(145deg, #68404d, #47343b);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(2deg); }
+      50% { transform: translateY(-12px) rotate(0deg); }
+    }
+
+    @keyframes sway {
+      0%, 100% { transform: rotate(-3deg); }
+      50% { transform: rotate(4deg); }
+    }
+
+    @keyframes drift {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(12deg); }
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 760px) {
+      .navbar {
+        padding: 15px 5%;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .logo {
+        font-size: 25px;
+      }
+
+      .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 17px;
+      }
+
+      .nav-links a {
+        font-size: 11px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 65px 7%;
+        gap: 45px;
+      }
+
+      .hero-description {
+        margin: auto;
+      }
+
+      .flower-frame {
+        max-width: 300px;
+      }
+
+      .side-note {
+        right: 2%;
+      }
+
+      .section {
+        padding: 70px 7%;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .paper-card {
+        padding: 25px;
+      }
+
+      .quote-section {
+        padding: 75px 8%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="navbar">
+    <a href="#home" class="logo" style="text-decoration:none">Uyên Linh ✿</a>
+
+    <nav class="nav-links" aria-label="Điều hướng chính">
+      <a href="#gioi-thieu">Về mình</a>
+      <a href="#truong-hoc">Mái trường</a>
+      <a href="#thanh-xuan">Thanh xuân</a>
+      <a href="#loi-nho">Lời nhắn</a>
+    </nav>
+
+    <button class="theme-button" id="themeToggle"
+      type="button" aria-label="Chuyển chế độ sáng tối">☾</button>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-text">
+        <p class="eyebrow">Nhật ký tuổi học trò · 01</p>
+
+        <h1>Những mùa<br><em>hoa thanh xuân</em></h1>
+
+        <p class="hero-description">
+          Xin chào, mình là Uyên Linh, học sinh trường THPT Phú Nhuận.
+          Đây là góc nhỏ của mình, nơi lưu giữ những ngày đến lớp,
+          những câu chuyện bạn bè và những kỷ niệm trong trẻo của
+          tuổi học trò dưới mái trường thân thương.
+        </p>
+
+        <a class="primary-button" href="#gioi-thieu">
+          KHÁM PHÁ GÓC NHỎ CỦA MÌNH ↗
+        </a>
+      </div>
+
+      <div class="flower-frame" aria-label="Minh họa hoa ly hồng">
+        <div class="flower-picture">
+          <div class="lily" aria-hidden="true">
+            <div class="lily-stem"></div>
+            <div class="lily-leaf"></div>
+            <div class="lily-leaf second"></div>
+            <div class="petal one"></div>
+            <div class="petal two"></div>
+            <div class="petal three"></div>
+            <div class="petal four"></div>
+            <div class="petal five"></div>
+            <div class="pollen"></div>
+          </div>
+          <div class="frame-caption">la vie est belle</div>
+        </div>
+      </div>
+
+      <div class="side-note">BLOOM IN YOUR OWN TIME</div>
+    </section>
+
+    <section class="section" id="gioi-thieu">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Một chút về mình</p>
+        <h2>Trang vở nhỏ, thế giới lớn</h2>
+        <p>
+          Mỗi ngày đến trường là một trang mới trong cuốn nhật ký tuổi trẻ.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <article class="paper-card reveal">
+          <div class="card-symbol">❀</div>
+          <h3>Mình là ai?</h3>
+          <p>
+            Mình là Uyên Linh, học sinh trường THPT Phú Nhuận.
+            Mình đang trải qua những tháng ngày học tập, khám phá
+            bản thân và trưởng thành hơn qua từng trải nghiệm.
+            Với mình, tuổi học trò là khoảng thời gian để học hỏi,
+            kết nối và lưu giữ thật nhiều điều đáng quý.
+          </p>
+        </article>
+
+        <article class="paper-card reveal">
+          <div class="card-symbol">♡</div>
+          <h3>Điều mình trân trọng</h3>
+          <p>
+            Mình trân trọng những bài học của thầy cô, những lần
+            cùng bạn bè giải bài tập, những câu chuyện trong giờ
+            ra chơi và cả những lúc mọi người động viên nhau.
+            Chính những điều bình dị ấy khiến mỗi ngày đến trường
+            trở nên ý nghĩa hơn.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section school-section" id="truong-hoc">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Dưới mái trường thân yêu</p>
+        <h2>Những ngày ở Phú Nhuận</h2>
+        <p>
+          Trường học không chỉ có bài vở, mà còn có tình bạn,
+          sự sẻ chia và những kỷ niệm theo mình qua năm tháng.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <article class="paper-card reveal">
+          <div class="card-symbol">☼</div>
+          <h3>Những buổi đến lớp</h3>
+          <p>
+            Mỗi buổi học là cơ hội để tiếp thu kiến thức mới,
+            rèn luyện tính kiên trì và từng bước tiến gần hơn
+            đến những mục tiêu của bản thân.
+          </p>
+        </article>
+
+        <article class="paper-card reveal">
+          <div class="card-symbol">✿</div>
+          <h3>Tình bạn học trò</h3>
+          <p>
+            Từ những lần trao đổi bài đến những câu chuyện vui
+            sau giờ học, tình bạn khiến quãng đời học sinh
+            có thêm nhiều sắc màu đáng nhớ.
+          </p>
+        </article>
+
+        <article class="paper-card reveal">
+          <div class="card-symbol">✎</div>
+          <h3>Bài học trưởng thành</h3>
+          <p>
+            Bên cạnh kiến thức trong sách, mình còn học cách
+            lắng nghe, hợp tác, tôn trọng sự khác biệt và
+            có trách nhiệm hơn với lựa chọn của mình.
+          </p>
+        </article>
+
+        <article class="paper-card reveal">
+          <div class="card-symbol">♡</div>
+          <h3>Lời cảm ơn thầy cô</h3>
+          <p>
+            Cảm ơn thầy cô đã tận tình hướng dẫn, kiên nhẫn
+            giải đáp những điều chưa hiểu và tiếp thêm động lực
+            để chúng mình không ngừng cố gắng.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="thanh-xuan">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Những mảnh ghép thanh xuân</p>
+        <h2>Kỷ niệm viết bằng thời gian</h2>
+        <p>
+          Có những điều rất đỗi bình thường hôm nay,
+          nhưng mai này có thể trở thành ký ức mà ta muốn nhớ mãi.
+        </p>
+      </div>
+
+      <div class="timeline">
+        <article class="timeline-item reveal">
+          <h3>Trang vở đầu ngày</h3>
+          <p>
+            Bắt đầu một ngày mới với sách vở, bài học và
+            tinh thần sẵn sàng khám phá những điều chưa biết.
+          </p>
+        </article>
+
+        <article class="timeline-item reveal">
+          <h3>Tiếng cười giờ ra chơi</h3>
+          <p>
+            Một khoảng nghỉ ngắn để trò chuyện, chia sẻ chuyện
+            học hành và làm cho ngày đến lớp thêm vui vẻ.
+          </p>
+        </article>
+
+        <article class="timeline-item reveal">
+          <h3>Cùng nhau cố gắng</h3>
+          <p>
+            Những lần học nhóm, cùng tìm lời giải và động viên
+            nhau nhắc nhở rằng hành trình học tập sẽ nhẹ nhàng
+            hơn khi có bạn đồng hành.
+          </p>
+        </article>
+
+        <article class="timeline-item reveal">
+          <h3>Ước mơ ngày mai</h3>
+          <p>
+            Mình mong sẽ luôn giữ được sự tò mò, lòng tử tế
+            và tinh thần ham học hỏi để tự tin bước tiếp
+            trên hành trình trưởng thành.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="quote-section reveal" id="loi-nho">
+      <blockquote>
+        “Tuổi học trò không chỉ là những ngày tháng đi qua,
+        mà còn là những điều đẹp đẽ ta mang theo mãi về sau.”
+      </blockquote>
+      <p>GỬI NHỮNG NĂM THÁNG THANH XUÂN</p>
+    </section>
+
+    <section class="contact reveal">
+      <p class="eyebrow">Một lời nhắn nhỏ</p>
+      <h2>Cảm ơn vì đã ghé thăm ♡</h2>
+      <p>
+        Mong rằng mỗi chúng ta đều có một thời học sinh
+        thật đẹp, có những người bạn chân thành và những
+        ước mơ đủ lớn để tiếp tục cố gắng mỗi ngày.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-flower">✿</div>
+    <p>Được viết bằng một chút hoài niệm và thật nhiều yêu thương.</p>
+    <p>Uyên Linh · THPT Phú Nhuận</p>
+    <p>© <span id="year"></span> · Những mùa hoa thanh xuân</p>
+  </footer>
+
+  <script>
+    // Hiệu ứng xuất hiện nhẹ nhàng khi cuộn trang
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    document.querySelectorAll(".reveal").forEach((element) => {
+      revealObserver.observe(element);
+    });
+
+    // Chuyển đổi giao diện sáng và tối
+    const themeButton = document.getElementById("themeToggle");
+
+    themeButton.addEventListener("click", () => {
+      const isDark = document.body.classList.toggle("dark");
+      themeButton.textContent = isDark ? "☀" : "☾";
+      themeButton.setAttribute(
+        "aria-label",
+        isDark ? "Chuyển sang giao diện sáng" : "Chuyển sang giao diện tối"
+      );
+    });
+
+    // Tự động cập nhật năm ở chân trang
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
